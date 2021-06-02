@@ -1,0 +1,4 @@
+R5T.T0029.Dotnet.Construction - A construction console-app for the library R5T.T0029.Dotnet.
+
+Goals
+
