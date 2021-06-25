@@ -1,0 +1,4 @@
+R5T.T0029.Dotnet.T001 - DotnetNewTemplates type library for the templates of the "dotnet new" command.
+
+Goals
+

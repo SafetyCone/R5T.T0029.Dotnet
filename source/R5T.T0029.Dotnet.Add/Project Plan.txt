@@ -1,0 +1,6 @@
+R5T.T0029.Dotnet.Add - ICommandBuilder extensions for the "dotnet add <project> [references]" command.
+
+See: https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-add-reference
+
+Goals
+

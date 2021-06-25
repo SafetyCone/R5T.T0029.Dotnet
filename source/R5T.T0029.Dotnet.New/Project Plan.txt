@@ -1,0 +1,6 @@
+R5T.T0029.Dotnet.Net - ICommandBuilder extensions for the "dotnet new" command.
+
+See: https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-new
+
+Goals
+

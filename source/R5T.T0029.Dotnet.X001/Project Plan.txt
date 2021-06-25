@@ -1,0 +1,6 @@
+R5T.T0029.Dotnet.X001 - ICommandBuilder extensions for different dotnet CLI commands.
+
+See: https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet
+
+Goals
+
