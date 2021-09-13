@@ -9,8 +9,7 @@ namespace R5T.T0029.Dotnet.X001
 
         public static string Add => "add";
         public static string List => "list";
+        public static string Reference => "reference";
         public static string Remove => "remove";
-
-
     }
 }
