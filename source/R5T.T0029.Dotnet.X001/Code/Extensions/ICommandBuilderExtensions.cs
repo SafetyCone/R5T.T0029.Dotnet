@@ -66,8 +66,6 @@ namespace R5T.T0029.Dotnet.X001
                 .Reference()
                 .AppendFilePathToken(projectReferenceFilePathToRemove)
                 ;
-
-            return commandBuilder;
         }
 
         public static ICommandBuilder RemoveProjectFromSolution(this ICommandBuilder commandBuilder,
