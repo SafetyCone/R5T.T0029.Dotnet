@@ -20,7 +20,7 @@ namespace R5T.T0029.Dotnet.Add
 
         public static ICommandBuilder Add(this ICommandBuilder commandBuilder,
             string projectToModifyFilePath,
-            IList<string> projectReferencesToAdd)
+            IEnumerable<string> projectReferencesToAdd)
         {
             return commandBuilder
                 .Add()

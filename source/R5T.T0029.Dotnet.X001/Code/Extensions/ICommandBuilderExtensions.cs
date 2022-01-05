@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+
+using R5T.Magyar;
 
 using R5T.T0028.X001; /// <see cref="R5T.T0028.X001.Documentation"/>
 
@@ -22,15 +25,57 @@ namespace R5T.T0029.Dotnet.X001
             return commandBuilder.AppendToken(DotnetSlnCommandOptions.List);
         }
 
-        public static ICommandBuilder AddProjectToSolution(this ICommandBuilder commandBuilder,
-            string solutionFilePathToModify,
-            string projectReferenceFilePathToAdd)
+        public static ICommandBuilder AddProjectToSolutionBase(this ICommandBuilder commandBuilder,
+            string solutionFilePathToModify)
         {
             return commandBuilder
                 .Sln()
                 .AppendFilePathToken(solutionFilePathToModify)
                 .Add()
-                .AppendFilePathToken(projectReferenceFilePathToAdd);
+                ;
+        }
+
+        public static ICommandBuilder AddProjectsToSolution(this ICommandBuilder commandBuilder,
+            string solutionFilePathToModify,
+            IEnumerable<string> projectReferenceFilePathsToAdd)
+        {
+            var output = commandBuilder.AddProjectToSolutionBase(solutionFilePathToModify)
+                .AppendFilePathTokens(projectReferenceFilePathsToAdd)
+                ;
+
+            return output;
+        }
+
+        public static ICommandBuilder AddProjectToSolution(this ICommandBuilder commandBuilder,
+            string solutionFilePathToModify,
+            string projectReferenceFilePathToAdd)
+        {
+            return commandBuilder.AddProjectsToSolution(
+                solutionFilePathToModify,
+                EnumerableHelper.From(projectReferenceFilePathToAdd));
+        }
+
+        public static ICommandBuilder AddProjectToSolutionBase(this ICommandBuilder commandBuilder,
+            string solutionFilePathToModify,
+            string solutionFolder)
+        {
+            return commandBuilder.AddProjectToSolutionBase(solutionFilePathToModify)
+                .AppendNameQuotedValuePair("--solution-folder", solutionFolder)
+                ;
+        }
+
+        public static ICommandBuilder AddProjectsToSolution(this ICommandBuilder commandBuilder,
+            string solutionFilePathToModify,
+            IEnumerable<string> projectReferenceFilePathsToAdd,
+            string solutionFolder)
+        {
+            var output = commandBuilder.AddProjectToSolutionBase(
+                solutionFilePathToModify,
+                solutionFolder)
+                .AppendFilePathTokens(projectReferenceFilePathsToAdd)
+                ;
+
+            return output;
         }
 
         public static ICommandBuilder AddProjectToSolution(this ICommandBuilder commandBuilder,
@@ -38,12 +83,10 @@ namespace R5T.T0029.Dotnet.X001
             string projectReferenceFilePathToAdd,
             string solutionFolder)
         {
-            return commandBuilder
-                .Sln()
-                .AppendFilePathToken(solutionFilePathToModify)
-                .Add()
-                .AppendNameQuotedValuePair("--solution-folder", solutionFolder)
-                .AppendFilePathToken(projectReferenceFilePathToAdd);
+            return commandBuilder.AddProjectsToSolution(
+                solutionFilePathToModify,
+                EnumerableHelper.From(projectReferenceFilePathToAdd),
+                solutionFolder);
         }
 
         public static ICommandBuilder Reference(this ICommandBuilder commandBuilder)
